@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="download (1).jpeg" type="image/x-icon">
+  <title>الضفدع الحكيم</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom, #e0f7e9, #b7e4c7);
+      text-align: center;
+      padding: 30px;
+      direction: rtl;
+    }
+    h1 {
+      font-size: 3em;
+      color: #2d6a4f;
+    }
+    img {
+      width: 200px;
+      margin: 20px auto;
+    }
+    input[type="text"] {
+      width: 60%;
+      padding: 10px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #52b788;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #40916c;
+    }
+    #response {
+      margin-top: 30px;
+      font-size: 1.4em;
+      color: #1b4332;
+      background-color: #d8f3dc;
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+      max-width: 80%;
+    }
+    #history {
+      margin-top: 40px;
+      text-align: right;
+      background-color: #f0fdf4;
+      padding: 15px;
+      border-radius: 10px;
+      color: #081c15;
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐸 الضفدع الحكيم</h1>
+  <p>اسأل الضفدع أي سؤال... وسيجيبك بسخرية فصيحة 🤓</p>
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Frog_cartoons_3.svg/1200px-Frog_cartoons_3.svg.png" alt="الضفدع الحكيم">
+
+  <input type="text" id="question" placeholder="اكتب سؤالك هنا...">
+  <br>
+  <button onclick="getAnswer()">اسأل الحكيم</button>
+
+  <div id="response"></div>
+
+  <div id="history">
+    <h3>📜 أرشيف الأسئلة:</h3>
+    <ul id="questionHistory"></ul>
+  </div>
+
+  <div id="about">
+    <h3>👑 من هو الضفدع الحكيم؟</h3>
+    <p>
+      الضفدع الحكيم هو كائن خيالي يعيش في بركة غامضة مليئة بالأسرار والسخرية. لا يُجيد الإجابة الجادة، لكنه بارع في إطلاق النكات الفصيحة والردود الساخرة. استشيره على مسؤوليتك الخاصة! 🐸
+    </p>
+  </div>
+
+  <audio id="frogSound" src="https://www.soundjay.com/nature/frog-croak-1.mp3"></audio>
+
+  <script>
+    const answers = [
+      "سؤالك يدل على أنك بحاجة إلى قيلولة طويلة.",
+      "حتى أنا، كضفدع، لا أفهم ما تريد.",
+      "هل هذه مزحة؟ أم أنك جاد؟ في الحالتين... مؤسف.",
+      "سؤال جميل، سأطبّقه عندما أتحول إلى أمير.",
+      "أرجوك، لا تُتعب دماغك ولا تُتعبني.",
+      "الإجابة في داخلك... ابحث عنها عندما تمل من الإنترنت.",
+      "لو كنت عبقريًا، لما سألتني. ولو كنت غبيًا، فلا أمل.",
+      "دعني أفكر... لا، لا يستحق التفكير أصلاً.",
+      "هذا السؤال يحتاج إلى لجنة تحقيق، وليس ضفدعًا مثلي.",
+      "هل تعرف أن سؤالك أطال عمري؟ من كثرة الضحك."
+    ];
+
+    function getAnswer() {
+      const question = document.getElementById("question").value;
+      const response = document.getElementById("response");
+      const history = document.getElementById("questionHistory");
+      const frogSound = document.getElementById("frogSound");
+
+      if (question.trim() === "") {
+        response.innerText = "اكتب سؤالًا أولاً، لا تكن كسولاً.";
+      } else {
+        const randomIndex = Math.floor(Math.random() * answers.length);
+        const answer = answers[randomIndex];
+        response.innerText = answer;
+
+        const li = document.createElement("li");
+        li.innerText = `س: ${question} \nج: ${answer}`;
+        history.prepend(li);
+
+        frogSound.play();
+      }
+    }
+  </script>
+</body>
+</html>
